@@ -1,0 +1,83 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjhthms4pnsd7"]
+
+[ext_resource type="PackedScene" uid="uid://dwd3h6c7adr5i" path="res://settings_menu.tscn" id="1_34pr8"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_kv1yi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ybwhf"]
+font_size = 50
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kv1yi")
+
+[node name="TitleMenu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="TitleMenu"]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 113.0
+offset_right = 716.0
+offset_bottom = 282.0
+text = "Hello World!"
+label_settings = SubResource("LabelSettings_ybwhf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitle" type="Label" parent="TitleMenu/Title"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 124.0
+offset_right = 321.0
+offset_bottom = 165.0
+text = "It's me..."
+horizontal_alignment = 1
+
+[node name="Game Launch" type="Button" parent="TitleMenu"]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 301.0
+offset_right = 541.0
+offset_bottom = 339.0
+text = "Launch
+"
+
+[node name="Settings" type="Button" parent="TitleMenu"]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 346.0
+offset_right = 542.0
+offset_bottom = 381.0
+text = "Settings
+"
+
+[node name="Game Exit" type="Button" parent="TitleMenu"]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 388.0
+offset_right = 542.0
+offset_bottom = 426.0
+text = "Exit
+"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("1_34pr8")]
+layout_mode = 1
+offset_left = 410.0
+offset_top = 278.0
+offset_right = -594.0
+offset_bottom = -188.0
+
+[node name="Back" type="Button" parent="SettingsMenu"]
+layout_mode = 2
+
+[connection signal="pressed" from="TitleMenu/Game Launch" to="." method="_on_game_launch_pressed"]
+[connection signal="pressed" from="TitleMenu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="TitleMenu/Game Exit" to="." method="_on_game_exit_pressed"]
+[connection signal="pressed" from="SettingsMenu/Back" to="." method="_on_back_pressed"]
