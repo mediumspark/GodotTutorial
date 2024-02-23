@@ -1,3 +1,58 @@
-[gd_scene format=3 uid="uid://dnqgdi7vg664l"]
+[gd_scene load_steps=5 format=3 uid="uid://dnqgdi7vg664l"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://dx2t1t0wco3fq" path="res://HealthBarBackground.png" id="1_ewnow"]
+[ext_resource type="Script" path="res://SampleGame.gd" id="1_m7mos"]
+[ext_resource type="Texture2D" uid="uid://1qmnu58bjvc" path="res://HeartEmpty.png" id="2_6co68"]
+[ext_resource type="Texture2D" uid="uid://bwl6bgbyahfa0" path="res://HeartFull.png" id="2_xqwf6"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("player_hearts", "enemy_health_bar")]
+position = Vector2(-2, -2)
+script = ExtResource("1_m7mos")
+player_hearts = [NodePath("CanvasLayer/Health 1"), NodePath("CanvasLayer/Health 2"), NodePath("CanvasLayer/Health 3")]
+empty_heart = ExtResource("2_6co68")
+enemy_health_bar = NodePath("CanvasLayer/TextureProgressBar")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Get Hurt Button" type="Button" parent="CanvasLayer"]
+offset_left = 292.0
+offset_top = 154.0
+offset_right = 422.0
+offset_bottom = 189.0
+text = "Hurt"
+
+[node name="Attack Button" type="Button" parent="CanvasLayer"]
+offset_left = 292.0
+offset_top = 213.0
+offset_right = 422.0
+offset_bottom = 248.0
+text = "Attack"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 213.0
+offset_top = 276.0
+offset_right = 478.0
+offset_bottom = 329.0
+value = 100.0
+rounded = true
+texture_under = ExtResource("1_ewnow")
+texture_progress = ExtResource("1_ewnow")
+tint_progress = Color(0.392157, 0.807843, 0.988235, 1)
+
+[node name="Health 1" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(270, 110)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_xqwf6")
+
+[node name="Health 2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(353, 111)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_xqwf6")
+
+[node name="Health 3" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(439, 112)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_xqwf6")
+
+[connection signal="pressed" from="CanvasLayer/Get Hurt Button" to="." method="_on_get_hurt_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Attack Button" to="." method="_on_attack_button_pressed"]
